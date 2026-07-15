@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baslow Lunches - Business Pitch</title>
+    <style>
+        :root {
+            --brand-green: #23b673;   
+            --brand-red: #e6251d;     
+            --brand-orange: #f36c21;  
+            --brand-blue: #161b3d;    
+            --bg-light: #fafafc;
+            --white: #ffffff;
+            --transition-smooth: cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--brand-blue);
+            overflow-x: hidden;
+            line-height: 1.6;
+            opacity: 0;
+            animation: pageFadeIn 1.2s var(--transition-smooth) forwards;
+        }
+
+        @keyframes pageFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .blob-accent-1 {
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: var(--brand-green);
+            border-radius: 45% 55% 70% 30% / 45% 60% 40% 55%;
+            z-index: -1;
+            opacity: 0.12;
+            animation: pulseBlobOne 20s infinite alternate ease-in-out;
+        }
+
+        .blob-accent-2 {
+            position: absolute;
+            top: 60%;
+            left: -150px;
+            width: 500px;
+            height: 500px;
+            background: var(--brand-red);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            z-index: -1;
+            opacity: 0.06;
+            animation: pulseBlobTwo 25s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseBlobOne {
+            0% { transform: translate(0, 0) scale(1); rotate: 0deg; }
+            100% { transform: translate(30px, 50px) scale(1.1); rotate: 45deg; }
+        }
+
+        @keyframes pulseBlobTwo {
+            0% { transform: translate(0, 0) scale(1); rotate: 0deg; }
+            100% { transform: translate(-40px, -30px) scale(1.05); rotate: -30deg; }
+        }
+
+        header {
+            padding: 2.5rem 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-graphic {
+            width: 42px;
+            height: 42px;
+            background-color: var(--brand-green);
+            border-radius: 40% 40% 10% 40%; 
+            position: relative;
+            box-shadow: -4px 4px 0px var(--brand-blue);
+            transition: transform 0.4s var(--transition-smooth);
+        }
+
+        .logo-container:hover .logo-graphic {
+            transform: scale(1.08) rotate(-5deg);
+        }
+
+        .logo-graphic::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 14px;
+            height: 14px;
+            border: 2px solid var(--white);
+            border-radius: 50% 0 50% 0;
+        }
+
+        .logo-text h1 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            color: var(--brand-blue);
+        }
+
+        .logo-text span {
+            color: var(--brand-red);
+        }
+
+        .pitch-tag {
+            background-color: var(--brand-blue);
+            color: var(--white);
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .pitch-tag:hover {
+            background-color: var(--brand-red);
+            transform: translateY(-2px);
+        }
+
+        .hero-section {
+            max-width: 1300px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 5rem;
+            min-height: 70vh;
+            align-items: center;
+        }
+
+        @media (max-width: 968px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+            .hero-left .intro-p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        .hero-left h2 {
+            font-size: 4rem;
+            line-height: 1.1;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .hero-left h2 em {
+            font-style: normal;
+            color: var(--brand-green);
+        }
+
+        .hero-left .tagline {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--brand-orange);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .hero-left .intro-p {
+            font-size: 1.2rem;
+            color: #474d66;
+            margin-bottom: 2.5rem;
+            max-width: 580px;
+        }
+
+        .interactive-cta {
+            background-color: var(--brand-green);
+            color: var(--white);
+            border: 3px solid var(--brand-blue);
+            font-weight: 800;
+            padding: 0.9rem 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0 var(--brand-blue);
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .interactive-cta:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0 var(--brand-blue);
+        }
+
+        .interactive-cta:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 var(--brand-blue);
+        }
+
+        .pitch-deck-container {
+            background-color: var(--white);
+            border: 4px solid var(--brand-blue);
+            border-radius: 24px;
+            box-shadow: 12px 12px 0px var(--brand-blue);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 520px;
+            position: relative;
+            transition: transform 0.4s var(--transition-smooth);
+        }
+
+        .pitch-deck-container:hover {
+            transform: translateY(-4px);
+        }
+
+        .deck-tabs {
+            display: flex;
+            background-color: var(--brand-blue);
+            border-bottom: 4px solid var(--brand-blue);
+        }
+
+        .tab-trigger {
+            flex: 1;
+            padding: 1.4rem 1rem;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .tab-trigger:hover {
+            color: var(--white);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-trigger.active {
+            color: var(--brand-blue);
+            background-color: var(--white);
+        }
+
+        .deck-slide {
+            padding: 3rem;
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+            height: 100%;
+        }
+
+        .deck-slide.active {
+            display: flex;
+            animation: slideFadeIn 0.5s var(--transition-smooth) forwards;
+        }
+
+        @keyframes slideFadeIn {
+            from { opacity: 0; transform: scale(0.98) translateY(5px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .slide-header {
+            margin-bottom: 2rem;
+        }
+
+        .slide-header h3 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: var(--brand-blue);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .concept-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .concept-card {
+            background-color: var(--bg-light);
+            padding: 1.8rem;
+            border-radius: 14px;
+            border-left: 6px solid var(--brand-green);
+            transition: transform 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .concept-card.accent-red {
+            border-left-color: var(--brand-red);
+        }
+
+        .concept-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .status-alert {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--brand-orange);
+            background: #fffbeb;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--brand-orange);
+        }
+
+        .menu-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .menu-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .menu-list li {
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .menu-list li:hover {
+            border-color: #e5e7eb;
+            background-color: var(--white);
+            transform: translateX(3px);
+        }
+
+        .cost-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.5rem;
+        }
+
+        .cost-table th {
+            text-align: left;
+            background-color: var(--brand-blue);
+            color: var(--white);
+            padding: 1rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cost-table td {
+            padding: 1rem;
+            border-bottom: 2px solid var(--bg-light);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .price-callout {
+            background-color: rgba(230, 37, 29, 0.03);
+            border: 2px dashed var(--brand-red);
+            padding: 1.2rem;
+            border-radius: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .pitch-quote {
+            background-color: var(--brand-red);
+            color: var(--white);
+            padding: 3.5rem;
+            border-radius: 24px;
+            max-width: 1300px;
+            margin: 4rem auto;
+            position: relative;
+            box-shadow: 8px 8px 0px var(--brand-blue);
+            border: 3px solid var(--brand-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .pitch-quote:hover {
+            transform: scale(1.01);
+        }
+
+        .pitch-quote p {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .pitch-quote span {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+            display: block;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .parent-banner {
+            max-width: 1300px;
+            margin: 5rem auto;
+            padding: 0 2rem;
+        }
+
+        .banner-inner {
+            background-color: var(--white);
+            border: 4px solid var(--brand-blue);
+            border-radius: 24px;
+            padding: 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+            box-shadow: 0 20px 40px rgba(22, 27, 61, 0.04);
+        }
+
+        @media (max-width: 912px) {
+            .banner-inner {
+                grid-template-columns: 1fr;
+                padding: 2.5rem;
+                gap: 2.5rem;
+            }
+        }
+
+        .banner-left h3 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .banner-right {
+            background-color: var(--bg-light);
+            border-top: 6px solid var(--brand-orange);
+            padding: 2.5rem;
+            border-radius: 18px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .banner-right h4 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            color: var(--brand-orange);
+            margin-bottom: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .banner-right p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--brand-blue);
+            font-weight: 600;
+        }
+
+        footer {
+            background-color: var(--brand-blue);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 8rem;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            opacity: 0.6;
+        }
+
+        .footer-tagline {
+            font-size: 1.4rem !important;
+            font-weight: 800;
+            color: var(--brand-green);
+            margin-bottom: 1rem;
+            opacity: 1 !important;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="blob-accent-1"></div>
+    <div class="blob-accent-2"></div>
+
+    <header>
+        <div class="logo-container">
+            <div class="logo-graphic"></div>
+            <div class="logo-text">
+                <h1>Baslow <span>Lunches</span></h1>
+            </div>
+        </div>
+        <div class="pitch-tag">Proposal Deck</div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-left">
+            <p class="tagline">The Fuel Bag</p>
+            <h2>Can you feel <br>the food?</h2>
+            <p class="intro-p">
+                Transforming the secondary school lunchtime experience into a high-concentration, community-building activity package in direct alignment with existing food services.
+            </p>
+            <div>
+                <button class="interactive-cta" onclick="document.getElementById('deck').scrollIntoView({behavior: 'smooth'})">
+                    View Deliverables
+                </button>
+            </div>
+        </div>
+
+        <div class="pitch-deck-container" id="deck">
+            <div class="deck-tabs">
+                <button class="tab-trigger active" onclick="openSlide(event, 'slide-vision')">1. Target</button>
+                <button class="tab-trigger" onclick="openSlide(event, 'slide-bag')">2. Contents</button>
+                <button class="tab-trigger" onclick="openSlide(event, 'slide-financials')">3. Budget</button>
+            </div>
+
+            <div id="slide-vision" class="deck-slide active">
+                <div class="slide-header">
+                    <h3>Vision & Aspirations</h3>
+                </div>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h4>Healthy Connections</h4>
+                        <p style="color: #474d66;">Lunches should spark youthfulness, problem solving, and higher concentration parameters across classrooms.</p>
+                    </div>
+                    <div class="concept-card accent-red">
+                        <h4>In-House Synergy</h4>
+                        <p style="color: #474d66;">Partnering directly with internal chefs at Aspens to inject vibrant flavors directly into school meal deals.</p>
+                    </div>
+                </div>
+                <div class="status-alert">
+                    Primary Goal: Drive engagement using autonomy, puzzle mechanics, and gamification.
+                </div>
+            </div>
+
+            <div id="slide-bag" class="deck-slide">
+                <div class="slide-header">
+                    <h3>Fuel Bag Specifications</h3>
+                </div>
+                <ul class="menu-list">
+                    <li><strong>Mains:</strong> Sandwiches (Cheese, Tuna & Cucumber) & Wraps (Chicken & Halloumi)</li>
+                    <li><strong>Snacks:</strong> Oatcakes, pita chips, red pepper hummus, bean dip, or cookies</li>
+                    <li><strong>Drinks:</strong> Varied flavored waters & standard Radnor Fizz matching Aspens stock</li>
+                    <li><strong>Riddle Card:</strong> Low-stakes riddles and map-based orienteering challenges</li>
+                    <li><strong>Rewards:</strong> Token mechanics redeemable at the school Golden Ticket Shop</li>
+                    <li><strong>The Bag:</strong> Formed out of 100% recycled paper ensuring structural school sustainability</li>
+                </ul>
+            </div>
+
+            <div id="slide-financials" class="deck-slide">
+                <div class="slide-header">
+                    <h3>Financial Framework & Projections</h3>
+                </div>
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>Resource Expense</th>
+                            <th>Cost Metric</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Recycled SOS Kraft Bags</td>
+                            <td>£26.99 per pack of 750 units (~11p each)</td>
+                        </tr>
+                        <tr>
+                            <td>Custom Food Labels</td>
+                            <td>£3.50 per roll of 250 labels</td>
+                        </tr>
+                        <tr>
+                            <td>Riddle Activity Card Printing</td>
+                            <td>£0.10 per unit card</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="price-callout">
+                    <div>
+                        <span style="font-weight: 800; display: block; font-size: 1.1rem;">Student Price Point</span>
+                        <small style="color: #474d66;">£3.50 Aspens Meal base + 50p program margin</small>
+                    </div>
+                    <div style="font-size: 1.6rem; font-weight: 900; color: var(--brand-red);">£4.00</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pitch-quote">
+        <p>"Secondary school students don't want to be lectured about nutrition; they want food that tastes good and looks cool. This bag teaches them through autonomy and surprise, showing them that healthy food is vibrant, filling, and genuinely delicious."</p>
+        <span>— Dougie Baumber, Executive Chairman</span>
+    </section>
+
+    <section class="parent-banner">
+        <div class="banner-inner">
+            <div class="banner-left">
+                <h3>Parent <br>& Carer Reach</h3>
+                <p style="color: #474d66; margin-top: 1rem;">
+                    Alleviating early transition stresses by empowering children with baseline confidence, collaborative social avenues, and creative puzzle mechanics at meal times.
+                </p>
+            </div>
+            <div class="banner-right">
+                <h4>Newsletter Outreach Layout</h4>
+                <p>
+                    "Every bag contains a riddle and an orienteering activity designed to challenge your child. At the end of every term your child is able to redeem a prize from the golden ticket shop."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-tagline">Baslow Lunches</p>
+        <p>Suthers School Refectory Treasure Hunt Strategy &copy; 2026</p>
+    </footer>
+
+    <script>
+        function openSlide(evt, slideId) {
+            const slides = document.querySelectorAll('.deck-slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+
+            const tabs = document.querySelectorAll('.tab-trigger');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            document.getElementById(slideId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
